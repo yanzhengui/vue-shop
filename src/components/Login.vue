@@ -90,6 +90,10 @@ export default {
               'boToken',
               res.data.dataResult.boToken
             )
+            window.sessionStorage.setItem(
+              'refreshToken',
+              res.data.dataResult.refreshToken
+            )
             this.$router.push('/home')
           })
           .catch(err => {
