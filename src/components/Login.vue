@@ -48,7 +48,7 @@ export default {
         ],
         password: [
           { required: true, message: '请输入密码', trigger: 'blur' },
-          { min: 6, max: 15, message: '长度在 6 到 15 个字符', trigger: 'blur' }
+          { min: 5, max: 15, message: '长度在 5 到 15 个字符', trigger: 'blur' }
         ]
       }
     }
@@ -74,7 +74,7 @@ export default {
       this.$refs.loginFormRef.validate(valid => {
         if (!valid) return false
         this.$http
-          .post('/api/open/login', this.loginForm)
+          .post('/open/login', this.loginForm)
           .then(res => {
             if (res.data.code !== '0') {
               return this.$message({
@@ -87,12 +87,15 @@ export default {
               type: 'success'
             })
             window.sessionStorage.setItem(
-              'boToken',
-              res.data.dataResult.boToken
+              'botoken',
+              res.data.dataResult.botoken
             )
             window.sessionStorage.setItem(
-              'refreshToken',
-              res.data.dataResult.refreshToken
+              'refreshtoken',
+              res.data.dataResult.refreshtoken
+            )
+            window.sessionStorage.setItem('loginUserInfo',
+              JSON.stringify(res.data.dataResult.userInfo)
             )
             this.$router.push('/home')
           })

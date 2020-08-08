@@ -2,11 +2,11 @@ module.exports = {
   publicPath: './',
   devServer: {
     proxy: {
-      '/api': {
+      '/shop': {
         target: 'http://localhost:9000/shop',
         changeOrigin: true,
         pathRewrite: {
-          '^/api': ''
+          '^/shop': ''
         }
       },
       '/pdf':{
